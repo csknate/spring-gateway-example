@@ -1,0 +1,30 @@
+server:
+  shutdown: graceful
+  port: 80
+  #https://docs.spring.io/spring-boot/docs/3.1.0/reference/html/application-properties.html
+
+management:
+  server:
+    port: 8080
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: health, info
+        exclude: threaddump, heapdump
+      cors:
+        allowed-methods: GET,POT,PUT,DELETE
+        allowed-origins:
+          - "*.test.com"
+  endpoint:
+    health:
+      show-detail: NEVER
+
+spring:
+  cloud:
+    gateway:
+      routes:
+#        - id: 100
+#          uri: http://localhost:8080/
+#          predicates:
+#            - Path=/management/**
